@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #fefefe;
+  --color-foreground: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #f3f4f6;
+  --color-coral: #fecaca;
+  --color-coral-dark: #e07070;
+  --color-surface: #f9fafb;
+  --font-sans: var(--font-poppins);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::selection {
+  background: #fecaca;
+  color: #1f2937;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.6;
+}

@@ -1,0 +1,311 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
+
+const projects = [
+  {
+    id: "bonita-receipt",
+    title: "Bonita Receipt View",
+    description: "Customer-facing receipt viewing system built for production at Bonita Cafe.",
+    tech: ["Next.js", "React", "TypeScript", "UI Design"],
+    type: "Client Work",
+    side: "left",
+    live: "https://receipts.bonitahandel.no/",
+    github: "https://github.com/lacostej/bonita-receipt-view",
+    caseStudy: "/projects/bonita-receipt",
+  },
+  {
+    id: "daily-reconciliation",
+    title: "Daily Reconciliation Dashboard",
+    description: "Internal end-of-day accounting tool comparing POS sales with payment tenders.",
+    tech: ["React", "TypeScript", "API Integration", "Data Visualization"],
+    type: "Client Work",
+    side: "right",
+    caseStudy: "/projects/reconciliation",
+    note: "Private client project",
+  },
+  {
+    id: "numa-booking",
+    title: "Numa Booking System",
+    description: "Breakfast service tracking for hotel guests — staff verify rooms and check arrivals.",
+    tech: ["Next.js", "TypeScript", "Full-stack"],
+    type: "Client Work",
+    side: "left",
+    caseStudy: "/projects/numa-booking",
+    note: "Private · In development",
+  },
+  {
+    id: "holidaze",
+    title: "Holidaze Booking Platform",
+    description: "Accommodation booking platform with dual-role functionality for customers and managers.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "API Integration"],
+    type: "Academic",
+    side: "right",
+    live: "https://rosarioba.github.io/holidaze-booking-app/",
+    github: "https://github.com/RosarioBA/holidaze-booking-app",
+    caseStudy: "/projects/holidaze",
+  },
+  {
+    id: "bidleaf",
+    title: "BidLeaf Auction Platform",
+    description: "Interactive auction site where users create listings, place bids, and manage profiles.",
+    tech: ["JavaScript", "Tailwind CSS", "Vite", "REST API"],
+    type: "Academic",
+    side: "left",
+    live: "https://bidleaf.netlify.app/",
+    github: "https://github.com/RosarioBA/bidleaf-sp2",
+    caseStudy: "/projects/bidleaf",
+  },
+];
+
+const skills = [
+  "React", "Next.js", "TypeScript", "JavaScript",
+  "HTML5", "CSS3", "Tailwind CSS", "API Integration",
+  "Responsive Design", "UI/UX", "Git", "Figma",
+];
+
+export default function Portfolio() {
+  const [visible, setVisible] = useState<Set<string>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = (entry.target as HTMLElement).dataset.item;
+            if (id) setVisible((prev) => new Set([...prev, id]));
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll("[data-item]").forEach((el) => {
+      observerRef.current?.observe(el);
+    });
+
+    return () => observerRef.current?.disconnect();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white relative font-sans">
+      {/* Fixed email on the right */}
+      <a
+        href="mailto:rosarioazevedob@gmail.com"
+        className="fixed right-8 bottom-1/4 z-10 text-[10px] font-medium tracking-[3px] text-rose-400 hover:text-rose-300 transition-colors hidden lg:flex items-center gap-3"
+        style={{ writingMode: "vertical-rl" }}
+      >
+        rosarioazevedob@gmail.com
+        <span className="w-px h-10 bg-rose-300 inline-block" />
+      </a>
+
+      {/* Central timeline line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2" />
+
+      {/* Hero */}
+      <div className="h-screen flex flex-col items-center justify-center text-center px-6">
+        <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">Frontend Developer</p>
+        <h1 className="text-5xl sm:text-6xl font-light text-gray-900 mb-5 tracking-tight">
+          Hi, I&apos;m Rosario
+        </h1>
+        <p className="text-base text-gray-500 leading-relaxed max-w-md mb-8">
+          Building real-world solutions for restaurants and businesses — with a background in design and digital marketing.
+        </p>
+        <a
+          href="mailto:rosarioazevedob@gmail.com"
+          className="text-sm text-rose-400 hover:text-rose-500 transition-colors mb-16 tracking-wide"
+        >
+          rosarioazevedob@gmail.com
+        </a>
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-xs uppercase tracking-widest text-gray-300">Scroll to explore</p>
+          <div className="w-px h-10 bg-gray-300 animate-bounce" />
+        </div>
+      </div>
+
+      {/* Projects timeline */}
+      <div className="relative pb-32 max-w-4xl mx-auto px-8">
+        {projects.map((project) => {
+          const isVisible = visible.has(project.id);
+          const isLeft = project.side === "left";
+
+          return (
+            <div key={project.id} data-item={project.id} className="relative mb-24">
+              {/* Timeline dot */}
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1 transition-all duration-500 ${
+                  isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                }`}
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-800" />
+              </div>
+
+              {/* Card */}
+              <div className={isLeft ? "pr-[52%]" : "pl-[52%]"}>
+                <div
+                  className={`transition-all duration-700 ${
+                    isVisible
+                      ? "opacity-100 translate-x-0"
+                      : `opacity-0 ${isLeft ? "-translate-x-16" : "translate-x-16"}`
+                  }`}
+                  style={{ transitionDelay: "150ms" }}
+                >
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all group relative">
+                    {/* Connector line */}
+                    <div
+                      className={`absolute top-7 ${isLeft ? "-right-6" : "-left-6"} w-6 h-px bg-gray-200`}
+                    />
+
+                    <div className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">
+                      {project.type}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1.5 group-hover:underline underline-offset-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tech.map((t) => (
+                        <span key={t} className="text-xs px-2.5 py-0.5 bg-gray-100 rounded-full text-gray-600">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      {project.caseStudy && (
+                        <a
+                          href={project.caseStudy}
+                          className="inline-flex items-center gap-1 text-xs font-medium text-gray-900 hover:underline underline-offset-2"
+                        >
+                          Case study <ArrowUpRight size={12} />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener"
+                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-900 transition-colors"
+                        >
+                          Live <ArrowUpRight size={12} />
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener"
+                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-900 transition-colors"
+                        >
+                          GitHub <ArrowUpRight size={12} />
+                        </a>
+                      )}
+                      {project.note && (
+                        <span className="text-xs text-gray-400 italic">{project.note}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* About */}
+      <div className="relative pb-32 max-w-4xl mx-auto px-8">
+        <div
+          data-item="about"
+          className={`bg-white p-8 rounded-xl border border-gray-200 transition-all duration-700 ${
+            visible.has("about") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">About Me</h2>
+          <div className="space-y-4 text-sm text-gray-600 leading-relaxed mb-8">
+            <p>
+              I'm Rosario Bustillo de Azevedo, a frontend developer currently studying at Noroff School of Technology in Oslo, Norway.
+              My background spans fashion design, digital marketing, and restaurant operations, giving me a unique perspective on building user-centered applications.
+            </p>
+            <p>
+              Currently, I work as Kitchen Manager and Web Developer at Bonita Cafe/De La Casa, where I develop internal tools and customer-facing applications
+              that solve real business problems. This hands-on experience has taught me to build solutions that are both technically sound and genuinely useful for end users.
+            </p>
+          </div>
+
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">Skills</h3>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {skills.map((skill) => (
+              <span key={skill} className="text-xs px-2.5 py-1 bg-gray-100 rounded-full text-gray-600">
+                {skill}
+              </span>
+            ))}
+          </div>
+
+          <div className="bg-gray-50 p-5 rounded-lg border-l-4 border-gray-200">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Let's Connect</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-3">
+              I'm actively seeking junior developer positions in Norwegian tech companies. If you're looking for someone who combines
+              technical skills with real-world business experience, let's talk.
+            </p>
+            <a
+              href="mailto:rosarioazevedob@gmail.com"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-900 hover:gap-2.5 transition-all"
+            >
+              Get in touch <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div
+        data-item="footer"
+        className={`max-w-4xl mx-auto px-8 pb-20 text-center transition-all duration-700 ${
+          visible.has("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        <h3 className="text-2xl font-semibold text-gray-900 mb-3">Thanks for Visiting</h3>
+        <p className="text-sm text-gray-500 mb-8 max-w-sm mx-auto">
+          Interested in collaborating? I'd love to hear from you.
+        </p>
+
+        <div className="flex justify-center gap-3 mb-8">
+          <a
+            href="https://github.com/RosarioBA"
+            target="_blank"
+            rel="noopener"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 hover:scale-110 transition-all"
+          >
+            <Github size={17} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/rosario-bustillo-119b8135a/"
+            target="_blank"
+            rel="noopener"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 hover:scale-110 transition-all"
+          >
+            <Linkedin size={17} />
+          </a>
+          <a
+            href="mailto:rosarioazevedob@gmail.com"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 hover:scale-110 transition-all"
+          >
+            <Mail size={17} />
+          </a>
+        </div>
+
+        <a
+          href="mailto:rosarioazevedob@gmail.com"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-900 text-white text-sm rounded-full hover:bg-gray-700 hover:scale-105 transition-all"
+        >
+          Send Me a Message <ArrowUpRight size={15} />
+        </a>
+
+        <p className="mt-12 text-xs text-gray-400">© 2026 Rosario Bustillo de Azevedo</p>
+      </div>
+    </div>
+  );
+}
