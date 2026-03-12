@@ -91,6 +91,9 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-white relative font-sans">
+      {/* Central line — runs full page from hero downward */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2" />
+
       {/* Fixed email on the right */}
       <a
         href="mailto:rosarioazevedob@gmail.com"
@@ -101,16 +104,13 @@ export default function Portfolio() {
         <span className="w-px h-10 bg-rose-300 inline-block" />
       </a>
 
-      {/* Central timeline line */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2" />
-
       {/* Hero */}
       <div className="h-screen flex flex-col items-center justify-center text-center px-6">
         <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">Frontend Developer</p>
-        <h1 className="text-5xl sm:text-6xl font-light text-gray-900 mb-5 tracking-tight">
-          Hi, I&apos;m Rosario
+        <h1 className="slam-top text-5xl sm:text-6xl font-light text-gray-900 mb-5 tracking-tight">
+          Hi, I&apos;m <span className="highlight-green">Rosario</span>
         </h1>
-        <p className="text-base text-gray-500 leading-relaxed max-w-md mb-8">
+        <p className="slam-bottom text-base text-gray-500 leading-relaxed max-w-md mb-8">
           Building real-world solutions for restaurants and businesses — with a background in design and digital marketing.
         </p>
         <a
@@ -125,94 +125,93 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Projects timeline */}
-      <div className="relative pb-32 max-w-4xl mx-auto px-8">
-        {projects.map((project) => {
-          const isVisible = visible.has(project.id);
-          const isLeft = project.side === "left";
+      {/* Projects */}
+      <div className="relative py-20 bg-white">
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 -translate-x-1/2" />
+        <div className="relative max-w-4xl mx-auto px-8">
+          {projects.map((project, index) => {
+            const isVisible = visible.has(project.id);
+            const isLeft = project.side === "left";
+            const rotations = ["-2deg", "1.5deg", "-1.2deg", "2deg", "-1.5deg"];
+            const rotation = rotations[index % rotations.length];
 
-          return (
-            <div key={project.id} data-item={project.id} className="relative mb-24">
-              {/* Timeline dot */}
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1 transition-all duration-500 ${
-                  isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                }`}
-              >
-                <div className="w-2.5 h-2.5 rounded-full bg-gray-800" />
-              </div>
-
-              {/* Card */}
-              <div className={isLeft ? "pr-[52%]" : "pl-[52%]"}>
-                <div
-                  className={`transition-all duration-700 ${
-                    isVisible
-                      ? "opacity-100 translate-x-0"
-                      : `opacity-0 ${isLeft ? "-translate-x-16" : "translate-x-16"}`
-                  }`}
-                  style={{ transitionDelay: "150ms" }}
-                >
-                  <div className="bg-white p-6 rounded-xl border border-gray-200 hover:border-gray-400 hover:shadow-md transition-all group relative">
-                    {/* Connector line */}
+            return (
+              <div key={project.id} data-item={project.id} className="relative mb-10">
+                {/* Card */}
+                <div className={isLeft ? "pr-[52%]" : "pl-[52%]"}>
+                  <div
+                    className={`transition-all duration-700 ${
+                      isVisible
+                        ? "opacity-100 translate-x-0"
+                        : `opacity-0 ${isLeft ? "-translate-x-16" : "translate-x-16"}`
+                    }`}
+                    style={{ transitionDelay: "150ms" }}
+                  >
                     <div
-                      className={`absolute top-7 ${isLeft ? "-right-6" : "-left-6"} w-6 h-px bg-gray-200`}
-                    />
+                      className="pinned-note p-6 rounded-sm relative group"
+                      style={{ transform: `rotate(${rotation})` }}
+                    >
+                      {/* Connector */}
+                      <div
+                        className={`absolute top-8 ${isLeft ? "-right-6" : "-left-6"} w-6 h-px bg-gray-200`}
+                      />
 
-                    <div className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">
-                      {project.type}
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1.5 group-hover:underline underline-offset-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tech.map((t) => (
-                        <span key={t} className="text-xs px-2.5 py-0.5 bg-gray-100 rounded-full text-gray-600">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-3 flex-wrap">
-                      {project.caseStudy && (
-                        <a
-                          href={project.caseStudy}
-                          className="inline-flex items-center gap-1 text-xs font-medium text-gray-900 hover:underline underline-offset-2"
-                        >
-                          Case study <ArrowUpRight size={12} />
-                        </a>
-                      )}
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener"
-                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-900 transition-colors"
-                        >
-                          Live <ArrowUpRight size={12} />
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener"
-                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-gray-900 transition-colors"
-                        >
-                          GitHub <ArrowUpRight size={12} />
-                        </a>
-                      )}
-                      {project.note && (
-                        <span className="text-xs text-gray-400 italic">{project.note}</span>
-                      )}
+                      <div className="text-[10px] uppercase tracking-widest text-amber-800/60 mb-2 font-medium">
+                        {project.type}
+                      </div>
+                      <h3 className="text-lg font-semibold text-stone-800 mb-1.5">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-stone-600 mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {project.tech.map((t) => (
+                          <span key={t} className="text-xs px-2.5 py-0.5 bg-amber-100/80 rounded-sm text-stone-600 border border-amber-200/60">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-3 flex-wrap">
+                        {project.caseStudy && (
+                          <a
+                            href={project.caseStudy}
+                            className="inline-flex items-center gap-1 text-xs font-medium text-stone-800 hover:underline underline-offset-2"
+                          >
+                            Case study <ArrowUpRight size={12} />
+                          </a>
+                        )}
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener"
+                            className="inline-flex items-center gap-1 text-xs text-stone-500 hover:text-stone-800 transition-colors"
+                          >
+                            Live <ArrowUpRight size={12} />
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener"
+                            className="inline-flex items-center gap-1 text-xs text-stone-500 hover:text-stone-800 transition-colors"
+                          >
+                            GitHub <ArrowUpRight size={12} />
+                          </a>
+                        )}
+                        {project.note && (
+                          <span className="text-xs text-stone-400 italic">{project.note}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* About */}
