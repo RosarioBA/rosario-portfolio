@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark, .dark *));
+
 @theme inline {
   --color-background: #fefefe;
   --color-foreground: #1f2937;
@@ -70,6 +72,16 @@ body {
   background-position: left bottom;
   background-size: 0% 45%;
   animation: highlight-sweep 0.45s ease-out var(--highlight-delay, 0.4s) both;
+}
+
+/* ── Dark mode overrides for custom classes ── */
+.dark .pinned-note {
+  background: #1c1c1e;
+  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .pinned-note:hover {
+  box-shadow: 4px 8px 22px rgba(0, 0, 0, 0.65);
 }
 
 /* ── Cork board ── */
