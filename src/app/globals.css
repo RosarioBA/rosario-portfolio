@@ -64,6 +64,14 @@ body {
   animation: highlight-sweep 0.5s ease-out 1.1s both;
 }
 
+.highlight-rose {
+  background-image: linear-gradient(transparent 55%, rgba(220, 122, 120, 0.28) 55%);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 45%;
+  animation: highlight-sweep 0.45s ease-out var(--highlight-delay, 0.4s) both;
+}
+
 /* ── Cork board ── */
 .cork-board {
   background-color: #7c5b3a;
