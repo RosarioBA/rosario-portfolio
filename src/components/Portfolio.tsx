@@ -91,8 +91,8 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 relative font-sans transition-colors duration-300">
-      {/* Central line */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 dark:bg-zinc-800 -translate-x-1/2" />
+      {/* Central line — desktop only */}
+      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 dark:bg-zinc-800 -translate-x-1/2" />
 
       {/* Fixed email on the right */}
       <a
@@ -129,7 +129,7 @@ export default function Portfolio() {
 
       {/* Projects */}
       <div className="relative py-20 bg-white dark:bg-zinc-950">
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 dark:bg-zinc-800 -translate-x-1/2" />
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 dark:bg-zinc-800 -translate-x-1/2" />
         <div className="relative max-w-4xl mx-auto px-8">
           {projects.map((project, index) => {
             const isVisible = visible.has(project.id);
@@ -139,7 +139,7 @@ export default function Portfolio() {
 
             return (
               <div key={project.id} data-item={project.id} className="relative mb-10">
-                <div className={isLeft ? "pr-[52%]" : "pl-[52%]"}>
+                <div className={isLeft ? "md:pr-[52%]" : "md:pl-[52%]"}>
                   <div
                     className={`transition-all duration-700 ${
                       isVisible
@@ -152,9 +152,9 @@ export default function Portfolio() {
                       className="pinned-note p-6 rounded-sm relative group"
                       style={{ transform: `rotate(${rotation})` }}
                     >
-                      {/* Connector */}
+                      {/* Connector — desktop only */}
                       <div
-                        className={`absolute top-8 ${isLeft ? "-right-6" : "-left-6"} w-6 h-px bg-gray-200 dark:bg-zinc-700`}
+                        className={`hidden md:block absolute top-8 ${isLeft ? "-right-6" : "-left-6"} w-6 h-px bg-gray-200 dark:bg-zinc-700`}
                       />
 
                       <div className="text-[10px] uppercase tracking-widest text-amber-800/60 dark:text-amber-500/60 mb-2 font-medium">
