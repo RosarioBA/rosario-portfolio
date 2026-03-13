@@ -31,6 +31,158 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "hypro-light",
+    title: "Hypro Light",
+    type: "Client Work — Next.js 16 + React 19",
+    date: "2026",
+    summary:
+      "A free workout website built as the top-of-funnel acquisition layer for the Hypro app. Users can browse real trainer workouts, run interactive sessions, log sets, and track personal records — all without signing up. Developed in close collaboration with Maciej, the founder, starting from a Figma prototype he guided and gave continuous feedback on.",
+    tags: ["Client Work", "Top-of-Funnel Product", "Full-Stack"],
+    image: "/images/hypro-light.png",
+    imageCaption: "Hypro Light — free workout browser and interactive session tracker at workouts.hypro.app.",
+    live: "https://workouts.hypro.app",
+    tech: [
+      {
+        title: "Frontend",
+        items: [
+          "Next.js 16 with App Router",
+          "React 19 with Server Components",
+          "TypeScript in strict mode",
+          "Tailwind CSS v4",
+          "shadcn/ui + Radix UI primitives",
+          "Framer Motion for animations",
+        ],
+      },
+      {
+        title: "Data Layer",
+        items: [
+          "GraphQL Yoga API route",
+          "GraphQL Code Generator for typed hooks",
+          "TanStack Query v5 for server state",
+          "Static TypeScript data files",
+          "localStorage for session & history",
+        ],
+      },
+      {
+        title: "Tooling & Features",
+        items: [
+          "PWA support via Serwist",
+          "PostHog analytics",
+          "Recharts for data visualisation",
+          "Lucide React icons",
+          "React Hook Form",
+          "pnpm + Node 22",
+        ],
+      },
+    ],
+    features: [
+      {
+        title: "Workout Browser",
+        description: "Browse and filter real workouts from Hypro trainers, with full exercise details including sets, reps, and muscle group targeting.",
+      },
+      {
+        title: "Interactive Session Wizard",
+        description: "Step through exercises one at a time in a guided wizard UI — designed to feel like an actual training session.",
+      },
+      {
+        title: "Set Logging",
+        description: "Log weight and reps per set with stepper inputs. Supports both Advanced (weight/reps) and Basic (checkbox) modes.",
+      },
+      {
+        title: "Personal Records & History",
+        description: "Tracks completed workouts and calculates personal records using the Epley 1RM formula. All stored locally — no account needed.",
+      },
+      {
+        title: "Muscle Heatmap Visualisation",
+        description: "SVG body map that highlights muscle groups targeted by each workout or exercise, helping users understand training balance.",
+      },
+      {
+        title: "Post-Workout Summary",
+        description: "Celebration screen after finishing a workout — shows stats, PRs hit, and a shareable card. The highest-value conversion moment.",
+      },
+    ],
+    process: [
+      {
+        title: "Starting from a Figma Prototype",
+        body: "The project began with a Figma prototype I built to establish the visual direction and user flow. Maciej reviewed each screen, gave detailed feedback on layout and UX decisions, and we iterated before writing a single line of code. This collaborative approach helped avoid costly rework later.",
+        highlight: {
+          title: "Prototype → Feedback → Build",
+          points: [
+            "Designed key screens in Figma: workout listing, detail page, active session wizard, and post-workout summary.",
+            "Maciej guided decisions around conversion touchpoints and product positioning.",
+            "Prototype sign-off gave us a clear shared vision before development started.",
+          ],
+        },
+      },
+      {
+        title: "Architecture & Data Strategy",
+        body: "The app uses a clean server-only data pipeline: Next.js Server Components fetch from a GraphQL Yoga API route, which resolves against static TypeScript data files exported from the Hypro platform. This keeps the client bundle small while enabling full type safety end to end.",
+        highlight: {
+          title: "No Database, No Auth — by Design",
+          points: [
+            "All workout data is static — no database means zero latency and no running costs.",
+            "User session data (history, PRs, set logs) lives in localStorage — removing any sign-up friction.",
+            "GraphQL Code Generator produces typed TanStack Query hooks automatically from the schema.",
+          ],
+        },
+      },
+      {
+        title: "Conversion-Focused UX",
+        body: "Every major UX decision was made with conversion in mind. The site gives away complete value for free, using psychology-driven soft CTAs at the moments users are most engaged — after finishing a workout, after building history, or when viewing locked analytics.",
+        highlight: {
+          title: "Key Conversion Touchpoints",
+          points: [
+            "Post-workout summary: highest engagement moment — CTA to sign up for full platform.",
+            "History page: after 2+ workouts, loss aversion kicks in (don't lose your progress).",
+            "Blurred analytics card: creates curiosity and scarcity without being aggressive.",
+          ],
+        },
+      },
+    ],
+    challenges: [
+      {
+        title: "Keeping Sessions Smooth Without a Backend",
+        challenge: "Active workout sessions need to persist across page reloads and feel responsive, without any server storage.",
+        solution: "Designed a localStorage data structure for session state, set logs, and history. Used TanStack Query with optimistic updates so the UI never waits for anything.",
+      },
+      {
+        title: "Type Safety Across the Full Stack",
+        challenge: "With static data files, GraphQL resolvers, and client query hooks all needing to stay in sync, any drift causes runtime errors.",
+        solution: "GraphQL Code Generator watches the schema and auto-generates typed hooks on every change, making the entire data layer compile-time safe.",
+      },
+      {
+        title: "Balancing Free Value with Conversion",
+        challenge: "Too aggressive with CTAs and it feels spammy; too passive and users never convert.",
+        solution: "Worked with Maciej to place soft CTAs only at peak engagement moments, using copy that emphasises what users gain rather than what they're missing.",
+      },
+      {
+        title: "Performance with Large Static Data",
+        challenge: "The exercises data file alone is ~680KB — importing it naively would bloat the client bundle.",
+        solution: "All data access is server-only (enforced with import 'server-only'), so static data never reaches the client. Only the serialised query results are sent.",
+      },
+    ],
+    future: [
+      {
+        title: "More Workout Programs",
+        description: "Expand the workout library with structured multi-week programs from additional Hypro trainers.",
+      },
+      {
+        title: "Advanced Analytics",
+        description: "Unlock detailed progress charts and volume tracking as a conversion incentive for signing up.",
+      },
+      {
+        title: "Social Share Cards",
+        description: "Polished shareable post-workout cards for Instagram and other platforms to drive organic growth.",
+      },
+      {
+        title: "Deeper Hypro Integration",
+        description: "Allow users to import their Hypro account data into the light site as a onboarding bridge.",
+      },
+    ],
+    prev: { slug: "holidaze", title: "Holidaze Booking Platform" },
+    next: { slug: "bonita-receipt", title: "Bonita Receipt View" },
+  },
+  {
     slug: "bonita-receipt",
     title: "Bonita Receipt View",
     type: "Client Work — Next.js + React",
@@ -179,7 +331,7 @@ export const projects: Project[] = [
         description: "Further optimise for mobile with touch-friendly interactions.",
       },
     ],
-    prev: { slug: "bidleaf", title: "BidLeaf Auction Platform" },
+    prev: { slug: "hypro-light", title: "Hypro Light" },
     next: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
   },
 
@@ -652,152 +804,7 @@ export const projects: Project[] = [
       },
     ],
     prev: { slug: "numa-booking", title: "Numa Booking System" },
-    next: { slug: "bidleaf", title: "BidLeaf Auction Platform" },
-  },
-
-  {
-    slug: "bidleaf",
-    title: "BidLeaf Auction Platform",
-    type: "Academic — Semester Project 2",
-    date: "October 2024",
-    summary:
-      "BidLeaf is an interactive auction platform built with vanilla JavaScript and Tailwind CSS. Users can create auction listings, place bids on items, and manage their auction activities in a clean, intuitive interface. This project demonstrates pure JavaScript skills without framework dependencies.",
-    tags: ["Vanilla JavaScript", "Real-time Bidding", "Semester Project"],
-    image: "/images/bidleaf.png",
-    imageCaption:
-      "BidLeaf main interface showcasing active auction listings with bidding functionality and user-friendly design.",
-    live: "https://bidleaf.netlify.app/",
-    github: "https://github.com/RosarioBA/bidleaf-sp2",
-    tech: [
-      {
-        title: "Core Technologies",
-        items: [
-          "Vanilla JavaScript (ES6+)",
-          "Tailwind CSS framework",
-          "HTML5 semantic structure",
-          "CSS3 animations & transitions",
-        ],
-      },
-      {
-        title: "Development Tools",
-        items: [
-          "Vite for fast development",
-          "ESLint for code quality",
-          "Prettier for formatting",
-          "Git workflow management",
-        ],
-      },
-      {
-        title: "API & Features",
-        items: [
-          "Noroff Auction API integration",
-          "JWT authentication system",
-          "Real-time bidding updates",
-          "Credit management system",
-        ],
-      },
-    ],
-    features: [
-      {
-        title: "Secure Authentication",
-        description:
-          "User registration with stud.noroff.no email, secure login/logout, and profile management with avatar updates.",
-      },
-      {
-        title: "Auction Creation",
-        description:
-          "Create detailed listings with titles, descriptions, images, and custom auction deadlines.",
-      },
-      {
-        title: "Smart Bidding System",
-        description:
-          "Place bids on active auctions with automatic credit validation and real-time bid tracking.",
-      },
-      {
-        title: "Advanced Search",
-        description:
-          "Search through all listings even when not logged in, with filtering and sorting options.",
-      },
-    ],
-    process: [
-      {
-        title: "Project Planning",
-        body: "Started by thoroughly analysing the Noroff Auction API documentation and creating a comprehensive project structure. Focused on vanilla JavaScript to strengthen fundamental programming skills without framework abstractions.",
-        highlight: {
-          title: "Key Improvement: Code Organisation",
-          points: [
-            "Initial approach: started with a single JavaScript file handling all functionality.",
-            "Improvement: refactored into modular structure with separate files for API calls, UI components, and utility functions.",
-          ],
-        },
-      },
-      {
-        title: "JavaScript Architecture",
-        body: "Built a robust vanilla JavaScript application using modern ES6+ features including async/await, modules, and destructuring. Implemented custom event handling and DOM manipulation without jQuery dependencies.",
-        highlight: {
-          title: "Key Improvement: Error Handling",
-          points: [
-            "Challenge: initial version crashed when API calls failed or returned unexpected data.",
-            "Solution: added comprehensive try-catch blocks, user-friendly error messages, and fallback UI states.",
-          ],
-        },
-      },
-      {
-        title: "Post-Feedback Improvements",
-        body: "After receiving detailed instructor feedback, I implemented specific improvements to address identified areas.",
-        highlight: {
-          title: "Improvements Made",
-          points: [
-            "Retry Logic for Bids: automatically retry failed bid requests up to 3 times before showing error.",
-            "Loading States: visual feedback during bid placement and login attempts.",
-            "Specific Error Messages: clear, actionable error messages for different login failure scenarios.",
-          ],
-        },
-      },
-    ],
-    challenges: [
-      {
-        title: "Bid Processing Reliability",
-        challenge:
-          "Teacher feedback: consider adding retry logic for failed requests and loading states for better UX.",
-        solution:
-          "Added automatic retry logic for failed bid requests (up to 3 attempts) and implemented loading states so users get clear visual feedback during bid processing.",
-      },
-      {
-        title: "Login System Enhancement",
-        challenge:
-          "Teacher feedback: implement more specific error messages and add loading states.",
-        solution:
-          "Replaced generic error messages with specific feedback for different scenarios (wrong password, invalid email, network issues) and added loading indicators during authentication.",
-      },
-      {
-        title: "Cross-browser Compatibility",
-        challenge: "Ensuring consistent behaviour across different browsers and devices.",
-        solution:
-          "Used progressive enhancement techniques and thorough testing across multiple browsers and screen sizes.",
-      },
-    ],
-    future: [
-      {
-        title: "Advanced Analytics",
-        description: "Add detailed statistics for users to track their bidding history and success rates.",
-      },
-      {
-        title: "Push Notifications",
-        description: "Implement browser notifications for auction updates and outbid alerts.",
-      },
-      {
-        title: "Category Filters",
-        description:
-          "Implement advanced filtering by categories, price ranges, and auction time remaining.",
-      },
-      {
-        title: "Messaging System",
-        description: "Add communication features between buyers and sellers for auction enquiries.",
-      },
-    ],
-    prev: { slug: "holidaze", title: "Holidaze Booking Platform" },
-    next: { slug: "bonita-receipt", title: "Bonita Receipt View" },
+    next: { slug: "hypro-light", title: "Hypro Light" },
   },
 ];
 

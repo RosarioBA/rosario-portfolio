@@ -6,6 +6,16 @@ import Image from "next/image";
 
 const projects = [
   {
+    id: "hypro-light",
+    title: "Hypro Light",
+    description: "Free workout website for the Hypro app — browse and complete real trainer workouts with no sign-up required.",
+    tech: ["Next.js 16", "React 19", "TypeScript", "GraphQL", "Tailwind CSS v4"],
+    type: "Client Work",
+    side: "left",
+    live: "https://workouts.hypro.app",
+    caseStudy: "/projects/hypro-light",
+  },
+  {
     id: "bonita-receipt",
     title: "Bonita Receipt View",
     description: "Customer-facing receipt viewing system built for production at Bonita Cafe.",
@@ -46,17 +56,6 @@ const projects = [
     live: "https://rosarioba.github.io/holidaze-booking-app/",
     github: "https://github.com/RosarioBA/holidaze-booking-app",
     caseStudy: "/projects/holidaze",
-  },
-  {
-    id: "bidleaf",
-    title: "BidLeaf Auction Platform",
-    description: "Interactive auction site where users create listings, place bids, and manage profiles.",
-    tech: ["JavaScript", "Tailwind CSS", "Vite", "REST API"],
-    type: "Academic",
-    side: "left",
-    live: "https://bidleaf.netlify.app/",
-    github: "https://github.com/RosarioBA/bidleaf-sp2",
-    caseStudy: "/projects/bidleaf",
   },
 ];
 
