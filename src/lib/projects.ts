@@ -180,7 +180,7 @@ export const projects: Project[] = [
       },
     ],
     prev: { slug: "holidaze", title: "Holidaze Booking Platform" },
-    next: { slug: "bonita-receipt", title: "Bonita Receipt View" },
+    next: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
   },
   {
     slug: "bonita-receipt",
@@ -331,8 +331,8 @@ export const projects: Project[] = [
         description: "Further optimise for mobile with touch-friendly interactions.",
       },
     ],
-    prev: { slug: "hypro-light", title: "Hypro Light" },
-    next: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
+    prev: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
+    next: { slug: "numa-booking", title: "Numa Booking System" },
   },
 
   {
@@ -496,8 +496,8 @@ export const projects: Project[] = [
         description: "Export reconciliation data to CSV for accounting software integration.",
       },
     ],
-    prev: { slug: "bonita-receipt", title: "Bonita Receipt View" },
-    next: { slug: "numa-booking", title: "Numa Booking System" },
+    prev: { slug: "hypro-light", title: "Hypro Light" },
+    next: { slug: "bonita-receipt", title: "Bonita Receipt View" },
   },
 
   {
@@ -656,7 +656,7 @@ export const projects: Project[] = [
         description: "Generate daily and weekly reports for accounting and operational insights.",
       },
     ],
-    prev: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
+    prev: { slug: "bonita-receipt", title: "Bonita Receipt View" },
     next: { slug: "holidaze", title: "Holidaze Booking Platform" },
   },
 
