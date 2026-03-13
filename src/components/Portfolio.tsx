@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -263,6 +264,30 @@ export default function Portfolio() {
               Get in touch <ArrowUpRight size={14} />
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* Drawing */}
+      <div
+        data-item="drawing"
+        className={`flex justify-center mb-16 transition-all duration-1000 ${
+          visible.has("drawing") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <div className="relative">
+          <Image
+            src="/images/rosario-drawing.jpg"
+            alt="Drawing of Rosario"
+            width={220}
+            height={220}
+            className="rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            style={{
+              filter: visible.has("drawing") ? undefined : "blur(4px)",
+              transition: "filter 1s ease, grayscale 0.7s ease",
+            }}
+          />
+          {/* Soft glow ring */}
+          <div className="absolute inset-0 rounded-full ring-1 ring-rose-200 dark:ring-rose-900 animate-pulse" />
         </div>
       </div>
 
