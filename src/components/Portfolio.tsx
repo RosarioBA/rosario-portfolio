@@ -247,12 +247,10 @@ export default function Portfolio() {
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-zinc-100 mb-6">About Me</h2>
           <div className="space-y-4 text-sm text-gray-600 dark:text-zinc-400 leading-relaxed mb-8">
             <p>
-              I&apos;m Rosario Bustillo de Azevedo, a frontend developer currently studying at Noroff School of Technology in Oslo, Norway.
-              My background spans fashion design, digital marketing, and restaurant operations, giving me a unique perspective on building user-centered applications.
+              I&apos;m Rosario Bustillo, a frontend developer in Oslo, Norway. I build web applications for restaurants and businesses, bringing together technical skills with real-world insight from digital marketing and hospitality.
             </p>
             <p>
-              Currently, I work as Kitchen Manager and Web Developer at Bonita Cafe/De La Casa, where I develop internal tools and customer-facing applications
-              that solve real business problems. This hands-on experience has taught me to build solutions that are both technically sound and genuinely useful for end users.
+              As Kitchen Manager and Web Developer at Bonita Cafe/De La Casa, I develop internal tools and customer-facing applications that streamline operations. I've also contributed to volunteer development projects, refining my ability to deliver solutions that are both technically sound and genuinely useful.
             </p>
           </div>
 
