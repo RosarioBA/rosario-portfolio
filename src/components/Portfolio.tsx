@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
@@ -67,7 +67,19 @@ const skills = [
 
 export default function Portfolio() {
   const [visible, setVisible] = useState<Set<string>>(new Set());
+  const [scrollProgress, setScrollProgress] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const handleScroll = useCallback(() => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -91,6 +103,12 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 relative font-sans transition-colors duration-300">
+      {/* Scroll progress bar */}
+      <div
+        className="fixed top-0 left-0 h-[3px] bg-green-400 z-50 transition-none"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* Central line — desktop only */}
       <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 dark:bg-zinc-800 -translate-x-1/2" />
 
