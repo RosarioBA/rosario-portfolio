@@ -331,7 +331,7 @@ export const projects: Project[] = [
         description: "Further optimise for mobile with touch-friendly interactions.",
       },
     ],
-    prev: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
+    prev: { slug: "subud", title: "Subud World Association" },
     next: { slug: "numa-booking", title: "Numa Booking System" },
   },
 
@@ -497,6 +497,148 @@ export const projects: Project[] = [
       },
     ],
     prev: { slug: "hypro-light", title: "Hypro Light" },
+    next: { slug: "subud", title: "Subud World Association" },
+  },
+
+  {
+    slug: "subud",
+    title: "Subud World Association",
+    type: "Team Project — Next.js 15 + Sanity CMS",
+    date: "2026",
+    summary:
+      "A website rebuild for the Subud World Association — an international spiritual organisation active in 54+ countries. The original WordPress site was migrated to a headless CMS architecture using Next.js 15 and Sanity. I worked as part of a team, contributing to several pages. This was my first time working with a headless CMS, a monorepo setup, and real-time visual editing.",
+    tags: ["Team Project", "Headless CMS", "WordPress Migration"],
+    image: "/images/subud.png",
+    imageCaption: "Subud World Association website — rebuilt from WordPress to Next.js 15 + Sanity for live content editing.",
+    live: "https://subud.org/",
+    tech: [
+      {
+        title: "Frontend",
+        items: [
+          "Next.js 15 with App Router",
+          "React Server Components",
+          "TypeScript",
+          "Tailwind CSS",
+          "Incremental Static Revalidation",
+        ],
+      },
+      {
+        title: "CMS & Content",
+        items: [
+          "Sanity v5 headless CMS (first time)",
+          "Sanity Studio for content editing",
+          "Real-time Visual Editing (Presentation Tool)",
+          "Live Content API",
+          "GROQ query language",
+        ],
+      },
+      {
+        title: "Tooling & Architecture",
+        items: [
+          "pnpm monorepo with workspaces",
+          "Separate site and studio packages",
+          "On-demand publishing (no rebuilds)",
+          "Team collaboration via Git",
+          "Migrated from WordPress",
+        ],
+      },
+    ],
+    features: [
+      {
+        title: "Headless CMS",
+        description: "All content — pages, news, organisational structure — is managed through Sanity Studio by editors without touching code.",
+      },
+      {
+        title: "Real-time Visual Editing",
+        description: "Sanity's Presentation Tool lets editors preview changes live, overlaid directly on the site, before publishing.",
+      },
+      {
+        title: "On-Demand Publishing",
+        description: "Content goes live instantly via Incremental Static Revalidation — no rebuild or redeployment needed.",
+      },
+      {
+        title: "Structured Content Schemas",
+        description: "Custom Sanity schemas model the organisation's content: pages, news posts, people, resources, and global settings.",
+      },
+      {
+        title: "Monorepo Architecture",
+        description: "Site and Studio are separate pnpm workspace packages — developed and deployed independently but coordinated from a single repo.",
+      },
+      {
+        title: "WordPress Migration",
+        description: "Content and structure were migrated from an existing WordPress site, preserving the organisation's information architecture.",
+      },
+    ],
+    process: [
+      {
+        title: "First Headless CMS Project",
+        body: "This was my first time working with a headless CMS. The concept of content as structured data — separate from the presentation layer — was completely new. I had to learn Sanity's data model, GROQ query language, and how the Studio connects to the Next.js frontend.",
+        highlight: {
+          title: "New Concepts I Learned",
+          points: [
+            "GROQ: Sanity's query language for fetching typed, structured content from the dataset.",
+            "Content schemas: defining document types in TypeScript that become editable fields in the Studio.",
+            "Draft vs published: how Sanity handles live previews of unpublished changes via the Presentation Tool.",
+          ],
+        },
+      },
+      {
+        title: "Working in a Team on a Real Client Site",
+        body: "The project was built collaboratively — multiple developers working on different sections of the site simultaneously. I contributed to specific pages while teammates handled others. Coordinating on shared schemas and components required communication before writing code.",
+        highlight: {
+          title: "Team Workflow",
+          points: [
+            "Agreed on schema shapes early to avoid conflicts in shared content types.",
+            "Used Git branches for page-level feature work and reviewed each other's changes.",
+            "Non-technical editors could update content independently via Sanity Studio.",
+          ],
+        },
+      },
+      {
+        title: "Monorepo Setup with pnpm Workspaces",
+        body: "The project used a pnpm monorepo — a new pattern for me. Managing two packages (Next.js site + Sanity Studio) from one repo, running both dev servers in parallel, and understanding how the workspace structure works were all part of the learning.",
+        highlight: {
+          title: "Monorepo Structure",
+          points: [
+            "site/ — Next.js 15 frontend, fetches content from Sanity via GROQ.",
+            "studio/ — Sanity Studio, deployed separately as the content editing interface.",
+            "Single `pnpm dev` command runs both servers in parallel via `--parallel` flag.",
+          ],
+        },
+      },
+    ],
+    challenges: [
+      {
+        title: "Learning GROQ from Scratch",
+        challenge: "GROQ is Sanity's own query language with its own syntax — joins, projections, filtering, and references all work differently to SQL or REST.",
+        solution: "Used Sanity's Vision tool in the Studio to write and test queries live against the dataset before integrating them into the Next.js pages.",
+      },
+      {
+        title: "Configuring Visual Editing",
+        challenge: "Sanity's Presentation Tool requires coordinated setup on both the Next.js side (draft mode route, live URL) and the Studio side.",
+        solution: "Followed the Sanity documentation step by step, tested the overlay system end to end, and iterated until live previews worked correctly.",
+      },
+      {
+        title: "Contributing to an Existing Team Codebase",
+        challenge: "Joining a codebase mid-build meant understanding existing conventions and schema decisions before making changes.",
+        solution: "Read the existing schemas and components first, aligned with teammates on patterns, and kept my contributions focused on agreed-upon pages.",
+      },
+    ],
+    future: [
+      {
+        title: "Internationalisation",
+        description: "Subud is active in 54+ countries — multi-language content support in Sanity would make the site accessible to the full global membership.",
+      },
+      {
+        title: "Member Portal",
+        description: "An authenticated section for Subud members to access internal resources and announcements not visible to the public.",
+      },
+      {
+        title: "Event Management",
+        description: "A structured events content type for world congresses and zone-level gatherings, with calendar integration.",
+      },
+    ],
+    prev: { slug: "reconciliation", title: "Daily Reconciliation Dashboard" },
     next: { slug: "bonita-receipt", title: "Bonita Receipt View" },
   },
 
